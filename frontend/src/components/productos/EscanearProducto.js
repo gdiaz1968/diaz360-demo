@@ -1,83 +1,46 @@
-import React, { useState } from 'react';
-import BarcodeReader from 'react-barcode-reader';
+import React, { useEffect, useRef } from 'react';
+import { Html5QrcodeScanner } from 'html5-qrcode'; // Usamos la librería para escanear
 
-import productosService from '../../services/productosService';
+function EscanearProducto({ onScanSuccess }) {
+  const scannerRef = useRef(null);
 
+  useEffect(() => {
+    if (!scannerRef.current) {
+      scannerRef.current = new Html5QrcodeScanner(
+        "reader", 
+        {
+          fps: 10, // Frames por segundo
+          qrbox: { width: 250, height: 250 }, // Tamaño del área de escaneo
+        },
+        /* verbose= */ false
+      );
 
+      scannerRef.current.render(
+        (decodedText, decodedResult) => {
+          console.log(`Código escaneado: ${decodedText}`, decodedResult);
+          if (onScanSuccess) {
+            onScanSuccess(decodedText);
+          }
+        },
+        (errorMessage) => {
+          console.warn(`Error de escaneo: ${errorMessage}`);
+        }
+      );
+    }
 
-function EscanearProducto({ obtenerProductos }) {
-  const [producto, setProducto] = useState({
-    nombre: '',
-    categoria: '',
-    precio_compra: '',
-    precio_venta: '',
-    stock: ''
-  });
-
-  const handleScan = async (codigo) => {
-    // Aquí se puede utilizar el código escaneado para buscar el producto
-    // o rellenar algunos campos automáticamente si es necesario.
-    setProducto({ ...producto, nombre: `Producto ${codigo}` }); // Simulación con nombre
-  };
-
-  const handleChange = (e) => {
-    setProducto({ ...producto, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    await productosService.crearProducto(producto);
-    obtenerProductos(); // Actualiza el listado de productos después de guardar
-    setProducto({ nombre: '', categoria: '', precio_compra: '', precio_venta: '', stock: '' });
-  };
+    return () => {
+      if (scannerRef.current) {
+        scannerRef.current.clear().catch(error => {
+          console.error("Error limpiando el scanner", error);
+        });
+      }
+    };
+  }, [onScanSuccess]);
 
   return (
     <div>
-      <h3>Escanear Producto</h3>
-      <BarcodeReader onScan={handleScan} onError={console.error} />
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="nombre"
-          value={producto.nombre}
-          onChange={handleChange}
-          placeholder="Nombre del Producto"
-          required
-        />
-        <input
-          type="text"
-          name="categoria"
-          value={producto.categoria}
-          onChange={handleChange}
-          placeholder="Categoría"
-          required
-        />
-        <input
-          type="number"
-          name="precio_compra"
-          value={producto.precio_compra}
-          onChange={handleChange}
-          placeholder="Precio de Compra"
-          required
-        />
-        <input
-          type="number"
-          name="precio_venta"
-          value={producto.precio_venta}
-          onChange={handleChange}
-          placeholder="Precio de Venta"
-          required
-        />
-        <input
-          type="number"
-          name="stock"
-          value={producto.stock}
-          onChange={handleChange}
-          placeholder="Stock"
-          required
-        />
-        <button type="submit">Guardar Producto</button>
-      </form>
+      <h2>Escanear Producto</h2>
+      <div id="reader" style={{ width: "300px", margin: "auto" }}></div>
     </div>
   );
 }

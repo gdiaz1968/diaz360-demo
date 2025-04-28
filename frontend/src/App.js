@@ -1,16 +1,30 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Productos from './pages/productos';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Sidebar from './components/common/sideBar.js';
+
+// Importamos las páginas
+
+import Productos from './pages/productos.js';
+import Compras from './pages/compras.js';
+import Ventas from './pages/ventas.js'; // (cuando la tengamos)
+import Reportes from './pages/reportes.js'; // (preparamos ruta aunque no exista todavía)
 
 function App() {
   return (
     <Router>
-      <div className="container mt-4">
-        <h1 className="mb-4">Gdiaz360</h1>
-        <Routes>
-          {/* Todas las rutas serán manejadas dentro de Productos */}
-          <Route path="/*" element={<Productos />} />
-        </Routes>
+      <div style={{ display: 'flex' }}>
+        <Sidebar />
+        <div style={{ marginLeft: '200px', padding: '20px', width: '100%' }}>
+          <Routes>
+            {/* Ruta predeterminada para "/" */}
+            <Route path="/" element={<Productos />} />
+
+            <Route path="/productos" element={<Productos />} />
+            <Route path="/compras" element={<Compras />} />
+            <Route path="/ventas" element={<Ventas />} />
+            <Route path="/reportes" element={<Reportes />} />
+          </Routes>
+        </div>
       </div>
     </Router>
   );

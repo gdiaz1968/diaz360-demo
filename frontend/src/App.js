@@ -1,13 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Sidebar from './components/common/sideBar.js';
+import Sidebar from './components/common/sideBar';
 
-// Importamos las páginas
-
-import Productos from './pages/productos.js';
-import Compras from './pages/compras.js';
-import Ventas from './pages/ventas.js'; // (cuando la tengamos)
-import Reportes from './pages/reportes.js'; // (preparamos ruta aunque no exista todavía)
+// Importamos las páginas (sin extensión)
+import Productos from './pages/productos';
+import Compras from './pages/compras';
+import Ventas from './pages/ventas';
+import Reportes from './pages/reportes';
 
 function App() {
   return (
@@ -16,9 +15,7 @@ function App() {
         <Sidebar />
         <div style={{ marginLeft: '200px', padding: '20px', width: '100%' }}>
           <Routes>
-            {/* Ruta predeterminada para "/" */}
             <Route path="/" element={<Productos />} />
-
             <Route path="/productos" element={<Productos />} />
             <Route path="/compras" element={<Compras />} />
             <Route path="/ventas" element={<Ventas />} />

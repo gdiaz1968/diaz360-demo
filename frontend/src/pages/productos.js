@@ -9,18 +9,20 @@ function Productos() {
   const [productos, setProductos] = useState([]);
   const [productoEditado, setProductoEditado] = useState(null);
 
+  // Obtener todos los productos de la base de datos o servicio
   const obtenerProductos = async () => {
     const data = await productosService.obtenerTodos();
     setProductos(data);
   };
 
+  // Eliminar un producto de la base de datos o servicio
   const eliminarProducto = async (id) => {
     await productosService.eliminarProducto(id);
-    obtenerProductos();
+    obtenerProductos();  // Actualiza la lista de productos después de eliminar
   };
 
   useEffect(() => {
-    obtenerProductos();
+    obtenerProductos();  // Se ejecuta al montar el componente
   }, []);
 
   return (
@@ -35,6 +37,7 @@ function Productos() {
 
       {/* Rutas internas */}
       <Routes>
+        {/* Ruta para ver productos y el formulario de productos */}
         <Route path="/" element={
           <>
             <ProductoForm
@@ -49,10 +52,12 @@ function Productos() {
             />
           </>
         } />
+
+        {/* Ruta para escanear un producto */}
         <Route path="/escanear" element={
           <EscanearProducto onScanSuccess={(codigo) => {
             console.log("Código escaneado:", codigo);
-            obtenerProductos();
+            obtenerProductos();  // Actualiza la lista después de escanear
           }} />
         } />
       </Routes>

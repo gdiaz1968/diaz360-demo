@@ -1,5 +1,7 @@
 // Cambia localhost por la IP de tu máquina de desarrollo
-const API_URL = 'http://192.168.100.25:5000/api/products'; // Sustituye 192.168.100.25 por la IP de tu servidor
+//const API_URL = 'http://192.168.100.25:5000/api/products'; // Sustituye 192.168.100.25 por la IP de tu servidor
+
+const API_URL = 'http://localhost:5000/api/products'; // Sustituye 192.168.100.25 por la IP de tu servidor
 
 const obtenerTodos = async () => {
   try {

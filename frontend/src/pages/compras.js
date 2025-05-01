@@ -1,6 +1,6 @@
 // src/pages/compras.js
 import React, { useState, useEffect } from 'react';
-import '../pages/compras.css';
+import './compras.css';
 
 const Compras = () => {
   const [productos, setProductos] = useState([]);
@@ -13,7 +13,7 @@ const Compras = () => {
 
   useEffect(() => {
     // Cargar productos al montar
-    fetch('/api/productos')
+    fetch('/api/products')
       .then(res => res.json())
       .then(data => setProductos(data))
       .catch(err => console.error('Error cargando productos:', err));

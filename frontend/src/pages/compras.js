@@ -1,5 +1,6 @@
 // src/pages/compras.js
 import React, { useState, useEffect } from 'react';
+import { registrarCompra } from '../services/comprasService';  // Importamos el servicio
 import './compras.css';
 
 const Compras = () => {
@@ -26,13 +27,8 @@ const Compras = () => {
   const handleSubmit = async e => {
     e.preventDefault();
 
-    const res = await fetch('/api/compras', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData),
-    });
-
-    if (res.ok) {
+    try {
+      const nuevaCompra = await registrarCompra(formData);
       alert('Compra registrada correctamente');
       setFormData({
         producto_id: '',
@@ -40,9 +36,8 @@ const Compras = () => {
         precio_compra: '',
         fecha: new Date().toISOString().substring(0, 10),
       });
-    } else {
-      const error = await res.json();
-      alert(`Error: ${error.mensaje}`);
+    } catch (error) {
+      alert(`Error: ${error.message}`);
     }
   };
 

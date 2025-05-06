@@ -17,7 +17,7 @@ exports.crearCompra = async (req, res) => {
       return res.status(404).json({ mensaje: 'Producto no encontrado' });
     }
 
-    producto.stock += cantidad; // suma lo comprado al stock
+    producto.stock += Number(cantidad)  ; // suma lo comprado al stock
     await producto.save();
 
     res.status(201).json(nuevaCompra);

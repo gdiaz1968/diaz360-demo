@@ -1,4 +1,3 @@
-// models/saleModel.js
 const mongoose = require('mongoose');
 
 const saleSchema = new mongoose.Schema(

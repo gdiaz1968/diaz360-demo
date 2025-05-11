@@ -20,7 +20,6 @@
 │   └── server.js
 ├── eslint.config.js
 ├── frontend
-│   ├── .env
 │   ├── package-lock.json
 │   ├── package.json
 │   └── src
@@ -42,6 +41,7 @@
 │       │   └── ventas.js
 │       └── services
 │           ├── comprasService.js
-│           └── productosService.js
+│           ├── productosService.js
+│           └── ventasService.js
 ├── package-lock.json
 └── package.json

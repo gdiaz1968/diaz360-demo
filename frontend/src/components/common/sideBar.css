@@ -1,36 +1,50 @@
-/* frontend/src/components/common/Sidebar.css */
+/* frontend/src/components/common/sideBar.css */
 
 .sidebar {
-    width: 200px;
-    height: 100vh;
-    background-color: #343a40;
-    padding: 20px;
-    color: white;
-    position: fixed;
-  }
-  
-  .sidebar h2 {
-    color: #ffffff;
-    text-align: center;
-    margin-bottom: 30px;
-  }
-  
-  .sidebar nav ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .sidebar nav ul li {
-    margin: 20px 0;
-  }
-  
-  .sidebar nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 18px;
-  }
-  
-  .sidebar nav ul li a:hover {
-    text-decoration: underline;
-  }
-  
+  width: 220px;
+  height: 100vh;
+  background: linear-gradient(180deg, #2c3e50, #34495e);
+  padding: 20px;
+  color: white;
+  position: fixed;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 40px;
+  text-align: center;
+  color: #ecf0f1;
+}
+
+.sidebar nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar nav ul li {
+  margin: 20px 0;
+}
+
+.sidebar nav ul li a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #ecf0f1;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 10px;
+  border-radius: 8px;
+  transition: background 0.3s ease;
+}
+
+.sidebar nav ul li a:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.icon {
+  font-size: 20px;
+}

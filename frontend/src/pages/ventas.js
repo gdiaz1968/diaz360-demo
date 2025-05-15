@@ -1,6 +1,7 @@
+// src/pages/ventas.js
 import React, { useState, useEffect } from 'react';
 import { registrarVenta } from '../services/ventasService';
-import './compras.css'; // Puedes crear ventas.css si lo preferís
+import './ventas.css'; // Creamos ventas.css para su estilo propio
 
 const Ventas = () => {
   const [productos, setProductos] = useState([]);
@@ -40,9 +41,9 @@ const Ventas = () => {
   };
 
   return (
-    <div>
+    <div className="ventas-container">
       <h2>Registrar Venta</h2>
-      <form onSubmit={handleSubmit}>
+      <form className="ventas-form" onSubmit={handleSubmit}>
         <label>Producto:</label>
         <select name="producto_id" value={formData.producto_id} onChange={handleChange} required>
           <option value="">Seleccione un producto</option>

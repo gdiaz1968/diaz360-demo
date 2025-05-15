@@ -6,6 +6,7 @@
 │   ├── controllers
 │   │   ├── productController.js
 │   │   ├── purchaseController.js
+│   │   ├── reportController.js
 │   │   └── saleController.js
 │   ├── models
 │   │   ├── productModels.js
@@ -16,6 +17,7 @@
 │   ├── routes
 │   │   ├── productRoutes.js
 │   │   ├── purchaseRoutes.js
+│   │   ├── reportRoutes.js
 │   │   └── saleRoutes.js
 │   └── server.js
 ├── eslint.config.js
@@ -42,6 +44,7 @@
 │       └── services
 │           ├── comprasService.js
 │           ├── productosService.js
+│           ├── reportesService.js
 │           └── ventasService.js
 ├── package-lock.json
 └── package.json

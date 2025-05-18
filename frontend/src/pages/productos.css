@@ -1,4 +1,9 @@
-/* Estilos generales para la página de productos */
+.productos-pagina {
+  background-color: #f8f9fa;
+  min-height: 100vh;
+}
+
+/* Contenedor general del CRUD y la grilla */
 .productos-container {
   display: flex;
   flex-direction: row;
@@ -7,11 +12,13 @@
   background-color: #f9f9f9;
   min-height: 100vh;
   box-sizing: border-box;
+  flex-wrap: wrap;
 }
 
-/* ======== SECTOR CRUD ======== */
+/* CRUD */
 .productos-crud {
   flex: 1;
+  min-width: 280px;
   background-color: #ffffff;
   padding: 1.5rem;
   border-radius: 12px;
@@ -37,6 +44,7 @@
   border-radius: 8px;
   border: 1px solid #ccc;
   font-size: 1rem;
+  width: 100%;
 }
 
 .productos-crud button {
@@ -51,13 +59,15 @@
   background-color: #0056b3;
 }
 
-/* ======== SECTOR GRILLA ======== */
+/* GRILLA */
 .productos-grilla {
   flex: 2;
+  min-width: 280px;
   background-color: #ffffff;
   padding: 1.5rem;
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  overflow-x: auto;
 }
 
 .productos-grilla h2 {
@@ -89,6 +99,7 @@
 
 .acciones {
   display: flex;
+  flex-wrap: wrap;
   gap: 0.5rem;
 }
 
@@ -108,4 +119,42 @@
 .acciones .eliminar {
   background-color: #dc3545;
   color: #fff;
+}
+
+/* ============================ */
+/* DISEÑO RESPONSIVE CELULARES */
+/* ============================ */
+@media (max-width: 768px) {
+  .productos-container {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .productos-crud,
+  .productos-grilla {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .productos-tabla th,
+  .productos-tabla td {
+    padding: 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  .productos-pagina h2,
+  .productos-crud h2,
+  .productos-grilla h2 {
+    font-size: 1.3rem;
+    text-align: center;
+  }
+
+  .acciones {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .acciones button {
+    width: 100%;
+  }
 }

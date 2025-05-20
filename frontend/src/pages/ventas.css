@@ -49,3 +49,31 @@
 .ventas-form button:hover {
   background-color: #218838;
 }
+
+@media (max-width: 600px) {
+  .ventas-container {
+    margin: 20px 10px;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: none;
+  }
+
+  .ventas-container h2 {
+    font-size: 20px;
+  }
+
+  .ventas-form {
+    gap: 10px;
+  }
+
+  .ventas-form input,
+  .ventas-form select {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .ventas-form button {
+    font-size: 14px;
+    padding: 10px;
+  }
+}

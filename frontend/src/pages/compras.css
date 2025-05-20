@@ -53,3 +53,31 @@
 .compras-form button:hover {
   background-color: #218838;
 }
+
+@media (max-width: 600px) {
+  .compras-container {
+    margin: 20px 10px;
+    padding: 20px;
+    box-shadow: none;
+    border-radius: 8px;
+  }
+
+  .compras-container h2 {
+    font-size: 20px;
+  }
+
+  .compras-form {
+    gap: 12px;
+  }
+
+  .compras-form input,
+  .compras-form select {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .compras-form button {
+    font-size: 14px;
+    padding: 12px;
+  }
+}

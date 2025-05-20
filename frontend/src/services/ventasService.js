@@ -1,6 +1,6 @@
 export const registrarVenta = async (formData) => {
     try {
-      const res = await fetch('/api/sales', {
+      const res = await fetch('https://diaz360-demo.onrender.com/api/sales', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

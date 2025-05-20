@@ -13,7 +13,7 @@ const Compras = () => {
   });
 
   useEffect(() => {
-    fetch('/api/products')
+    fetch('https://diaz360-demo.onrender.com/api/products')
       .then(res => res.json())
       .then(data => setProductos(data))
       .catch(err => console.error('Error cargando productos:', err));

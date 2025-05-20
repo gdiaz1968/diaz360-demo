@@ -12,12 +12,12 @@ const Ventas = () => {
     fecha: new Date().toISOString().substring(0, 10),
   });
 
-  useEffect(() => {
-    fetch('/api/products')
-      .then(res => res.json())
-      .then(data => setProductos(data))
-      .catch(err => console.error('Error cargando productos:', err));
-  }, []);
+ useEffect(() => {
+     fetch('https://diaz360-demo.onrender.com/api/products')
+       .then(res => res.json())
+       .then(data => setProductos(data))
+       .catch(err => console.error('Error cargando productos:', err));
+   }, []);
 
   const handleChange = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value });

@@ -1,6 +1,6 @@
 export const registrarCompra = async (formData) => {
   try {
-    const res = await fetch'(https://diaz360-demo.onrender.com/api/purchases', {
+    const res = await fetch('https://diaz360-demo.onrender.com/api/purchases', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -8,27 +8,22 @@ export const registrarCompra = async (formData) => {
       body: JSON.stringify(formData),
     });
 
-    // Si la respuesta no es OK (status != 200–299)
-    if (!res.ok) {
-      let errorData = {};
-      try {
-        errorData = await res.json(); // intenta parsear JSON si viene
-      } catch (e) {
-        // si no es JSON, no hace nada
-      }
-      throw new Error(errorData.mensaje || `Error ${res.status}: al registrar la compra`);
-    }
-
-    // Intenta devolver los datos si existen
-    let data = {};
+    // 🔍 INTENTA obtener JSON, pero solo si hay cuerpo
+    let data = null;
     try {
-      data = await res.json();
-    } catch (e) {
-      // Si no hay JSON, devolvemos objeto vacío
+      const text = await res.text(); // primero obtenemos texto
+      data = text ? JSON.parse(text) : null; // luego lo parseamos si no está vacío
+    } catch (err) {
+      console.warn('⚠️ No se pudo parsear JSON:', err.message);
     }
 
-    return data;
+    if (!res.ok) {
+      const mensaje = (data && data.mensaje) || `Error ${res.status}`;
+      throw new Error(mensaje);
+    }
+
+    return data; // puede ser null si no hay contenido
   } catch (error) {
-    throw new Error(error.message || 'Error en el servicio de compras');
+    throw new Error(error.message || 'Error inesperado al registrar la compra');
   }
 };

@@ -13,17 +13,11 @@ const Ventas = () => {
   });
 
 useEffect(() => {
-  fetch('https://diaz360-demo.onrender.com/api/products')
-    .then(res => {
-      const contentType = res.headers.get("content-type");
-      if (!contentType || !contentType.includes("application/json")) {
-        throw new Error("La respuesta no es JSON. Verificá la URL o el backend.");
-      }
-      return res.json();
-    })
-    .then(data => setProductos(data))
-    .catch(err => console.error('Error cargando productos:', err));
-}, []);
+    fetch('https://diaz360-demo.onrender.com/api/products')
+      .then(res => res.json())
+      .then(data => setProductos(data))
+      .catch(err => console.error('Error cargando productos:', err));
+  }, []);
 
 
   const handleSubmit = async e => {

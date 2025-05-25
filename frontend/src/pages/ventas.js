@@ -1,4 +1,3 @@
-// src/pages/ventas.js
 import React, { useState, useEffect } from 'react';
 import { registrarVenta } from '../services/ventasService';
 import './ventas.css'; // Creamos ventas.css para su estilo propio
@@ -12,17 +11,24 @@ const Ventas = () => {
     fecha: new Date().toISOString().substring(0, 10),
   });
 
-useEffect(() => {
+  useEffect(() => {
     fetch('https://diaz360-demo.onrender.com/api/products')
       .then(res => res.json())
       .then(data => setProductos(data))
       .catch(err => console.error('Error cargando productos:', err));
   }, []);
 
+  // ✅ Esta función faltaba
+  const handleChange = e => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
 
   const handleSubmit = async e => {
     e.preventDefault();
-
     try {
       const nuevaVenta = await registrarVenta(formData);
       alert('Venta registrada correctamente');
@@ -50,13 +56,32 @@ useEffect(() => {
         </select>
 
         <label>Cantidad:</label>
-        <input type="number" name="cantidad" value={formData.cantidad} onChange={handleChange} required />
+        <input
+          type="number"
+          name="cantidad"
+          value={formData.cantidad}
+          onChange={handleChange}
+          required
+        />
 
         <label>Precio de venta:</label>
-        <input type="number" step="0.01" name="precio_venta" value={formData.precio_venta} onChange={handleChange} required />
+        <input
+          type="number"
+          step="0.01"
+          name="precio_venta"
+          value={formData.precio_venta}
+          onChange={handleChange}
+          required
+        />
 
         <label>Fecha:</label>
-        <input type="date" name="fecha" value={formData.fecha} onChange={handleChange} required />
+        <input
+          type="date"
+          name="fecha"
+          value={formData.fecha}
+          onChange={handleChange}
+          required
+        />
 
         <button type="submit">Guardar venta</button>
       </form>
